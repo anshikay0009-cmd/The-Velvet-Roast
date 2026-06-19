@@ -5,7 +5,6 @@
 
 import { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import ServicesBar from './components/ServicesBar';
 import AboutBrand from './components/AboutBrand';
@@ -94,9 +93,6 @@ export default function App() {
       
       {/* Decorative top soft warm lights panel */}
       <div className="absolute top-0 inset-x-0 h-[600px] bg-gradient-to-b from-brand-accent/5 via-transparent to-transparent pointer-events-none z-0"></div>
-
-      {/* HEADER SECTION */}
-      <Navbar preOrdersCount={preOrdersCount} />
 
       {/* BODY CONTENT SECTIONS */}
       <main className="relative z-10">
