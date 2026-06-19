@@ -4,6 +4,7 @@
  */
 
 import { useState, useMemo, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import ServicesBar from './components/ServicesBar';
@@ -140,24 +141,32 @@ export default function App() {
       )}
 
       {/* FLOATING VIEWPORT CTA: Persistent "Book a Table" anchor in the lower right bottom viewport */}
-      {showFloatingCta && (
-        <div className="fixed bottom-6 right-6 z-40 animate-in fade-in slide-in-from-bottom-10 duration-500">
-          <button
-            onClick={handleScrollToBooking}
-            className="group flex items-center space-x-2.5 px-5 py-3.5 bg-brand-accent text-white rounded-full font-sans font-bold text-xs uppercase tracking-wide hover:shadow-2xl hover:shadow-brand-accent/25 active:scale-95 transition-transform border border-brand-accent-hover select-none cursor-pointer"
-            id="persistent-floating-cta"
-            title="Book Your Selected Spots Instantly"
+      <AnimatePresence>
+        {showFloatingCta && (
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.85, y: 30 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.85, y: 30 }}
+            transition={{ type: "spring", stiffness: 260, damping: 20 }}
+            className="fixed bottom-6 right-6 z-40"
           >
-            <Armchair className="w-4.5 h-4.5" />
-            <span>Book a Spot</span>
-            {preOrdersCount > 0 && (
-              <span className="w-5 h-5 rounded-full bg-white text-brand-accent flex items-center justify-center font-mono text-[10px] font-extrabold group-hover:scale-105 transition-transform">
-                {preOrdersCount}
-              </span>
-            )}
-          </button>
-        </div>
-      )}
+            <button
+              onClick={handleScrollToBooking}
+              className="group flex items-center space-x-2.5 px-5 py-3.5 bg-brand-accent text-white rounded-full font-sans font-bold text-xs uppercase tracking-wide hover:shadow-2xl hover:shadow-brand-accent/25 active:scale-95 transition-transform border border-brand-accent-hover select-none cursor-pointer"
+              id="persistent-floating-cta"
+              title="Book Your Selected Spots Instantly"
+            >
+              <Armchair className="w-4.5 h-4.5" />
+              <span>Book a Spot</span>
+              {preOrdersCount > 0 && (
+                <span className="w-5 h-5 rounded-full bg-white text-brand-accent flex items-center justify-center font-mono text-[10px] font-extrabold group-hover:scale-105 transition-transform">
+                  {preOrdersCount}
+                </span>
+              )}
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
     </div>
   );
