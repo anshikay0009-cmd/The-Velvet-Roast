@@ -50,13 +50,13 @@ export default function ServicesBar() {
             return (
               <div 
                 key={idx} 
-                className="flex flex-col items-center p-4 bg-brand-card rounded-xl border border-brand-border hover:border-brand-accent/30 hover:shadow-sm transition-all duration-300 md:col-span-1 col-span-2 last:col-span-2 md:last:col-span-1"
+                className="flex flex-col items-center p-5 bg-brand-card rounded-xl border border-brand-border hover:border-brand-accent/50 hover:shadow-lg hover:-translate-y-1.5 transition-all duration-350 md:col-span-1 col-span-2 last:col-span-2 md:last:col-span-1 group cursor-default"
                 id={`service-card-${idx}`}
               >
-                <div className="w-12 h-12 flex items-center justify-center rounded-full bg-brand-accent/10 border border-brand-accent/20 text-brand-accent mb-3">
+                <div className="w-12 h-12 flex items-center justify-center rounded-full bg-brand-accent/10 border border-brand-accent/20 text-brand-accent mb-3 group-hover:bg-brand-accent group-hover:text-white group-hover:scale-110 transition-all duration-300">
                   <Icon className="w-5 h-5" />
                 </div>
-                <h3 className="font-sans font-semibold text-brand-text text-sm tracking-wide mb-1">
+                <h3 className="font-sans font-semibold text-brand-text text-sm tracking-wide mb-1 group-hover:text-brand-accent transition-colors duration-300">
                   {srv.title}
                 </h3>
                 <p className="font-sans text-xs text-brand-text/70 leading-relaxed max-w-[180px]">

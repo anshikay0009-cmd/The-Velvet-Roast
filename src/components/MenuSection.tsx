@@ -111,7 +111,7 @@ export default function MenuSection({
             {mainstayItems.map((item) => (
               <div 
                 key={`mainstay-${item.id}`}
-                className="bg-brand-card border border-brand-border rounded-2xl p-5 flex items-center space-x-4 hover:border-brand-accent/30 group hover:shadow-lg transition-all duration-300 relative overflow-hidden"
+                className="bg-brand-card border border-brand-border rounded-2xl p-5 flex items-center space-x-4 hover:border-brand-accent/50 group hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative overflow-hidden cursor-pointer"
                 id={`recommendation-card-${item.id}`}
               >
                 <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-brand-accent/5 to-transparent rounded-tr-2xl pointer-events-none"></div>
@@ -269,7 +269,7 @@ export default function MenuSection({
           {filteredItems.map((item) => (
             <div 
               key={item.id}
-              className="bg-brand-card border border-brand-border hover:border-brand-accent/35 rounded-3xl overflow-hidden shadow-sm hover:shadow-lg group transition-all duration-350 flex flex-col justify-between"
+              className="bg-brand-card border border-brand-border hover:border-brand-accent/50 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-2 group transition-all duration-350 flex flex-col justify-between cursor-pointer"
               id={`menu-card-${item.id}`}
             >
               {/* Card Photo Block */}

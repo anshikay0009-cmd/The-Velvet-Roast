@@ -14,16 +14,17 @@ export default function HeroSection({ onReserveClick }: HeroSectionProps) {
     <div className="relative bg-stone-950 min-h-[85vh] flex items-center justify-center py-24 px-4 overflow-hidden scroll-mt-24" id="hero-section">
       
       {/* Visual background image with soft dark-to-transparent gradient overlay */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 bg-stone-950">
         <img 
-          src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=1920" 
-          alt="The Velvet Roast Atmospheric Cafe Lounge" 
+          src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&q=80&w=1920" 
+          alt="The Velvet Roast Atmospheric Cozy Lounge Interior" 
           referrerPolicy="no-referrer"
-          className="w-full h-full object-cover opacity-45 object-center scale-100 hover:scale-102 transition-transform duration-10000 ease-out"
+          className="w-full h-full object-cover opacity-35 object-center scale-100 hover:scale-[1.03] transition-transform duration-[12000ms] ease-out"
         />
         {/* Layered cinematic dark-to-transparent gradients to guarantee perfect high-contrast legibility */}
-        <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/70 to-transparent"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-stone-950/50 via-transparent to-stone-950/50"></div>
+        <div className="absolute inset-0 bg-stone-950/70"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/85 to-stone-950/30"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-stone-950/70 via-transparent to-stone-950/70"></div>
       </div>
 
       {/* Hero Structural Content Container */}
@@ -58,7 +59,7 @@ export default function HeroSection({ onReserveClick }: HeroSectionProps) {
         <div className="flex flex-col sm:flex-row items-center gap-4" id="hero-cta-buttons">
           <button
             onClick={onReserveClick}
-            className="w-full sm:w-auto px-8 py-4 rounded-full bg-brand-accent hover:bg-brand-accent-hover text-white font-sans font-bold text-xs uppercase tracking-wider hover:shadow-2xl hover:shadow-brand-accent/20 active:scale-98 transition-all cursor-pointer flex items-center justify-center space-x-2"
+            className="w-full sm:w-auto px-8 py-4 rounded-full bg-brand-accent hover:bg-brand-accent-hover text-white font-sans font-bold text-xs uppercase tracking-wider hover:shadow-2xl hover:shadow-brand-accent/40 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer flex items-center justify-center space-x-2 shadow-lg shadow-brand-accent/15"
             id="hero-reserve-btn"
           >
             <Armchair className="w-4 h-4" />
@@ -70,7 +71,7 @@ export default function HeroSection({ onReserveClick }: HeroSectionProps) {
               const el = document.getElementById('digital-menu');
               if (el) el.scrollIntoView({ behavior: 'smooth' });
             }}
-            className="w-full sm:w-auto px-8 py-4 rounded-full bg-white/10 border border-white/25 text-white hover:bg-white/20 font-sans font-semibold text-xs uppercase tracking-wider transition-all cursor-pointer"
+            className="w-full sm:w-auto px-8 py-4 rounded-full bg-white/10 border border-white/25 text-white hover:bg-white/20 hover:border-white/40 hover:scale-105 active:scale-95 text-xs font-sans font-semibold uppercase tracking-wider transition-all duration-300 cursor-pointer"
             id="hero-menu-btn"
           >
             Explore Digital Menu

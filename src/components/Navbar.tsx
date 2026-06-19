@@ -47,31 +47,35 @@ export default function Navbar({ preOrdersCount }: NavbarProps) {
           <div className="hidden md:flex items-center space-x-8 text-xs font-mono uppercase tracking-wider text-brand-text/70" id="desktop-links">
             <button 
               onClick={() => scrollToSection('about-brand')} 
-              className="hover:text-brand-accent transition-colors cursor-pointer"
+              className="relative py-1 hover:text-brand-accent transition-all duration-300 cursor-pointer hover:scale-105 active:scale-95 group font-medium"
               id="nav-about-btn"
             >
-              The Vibe
+              <span>The Vibe</span>
+              <span className="absolute left-0 -bottom-0.5 w-0 h-[1.5px] bg-brand-accent group-hover:w-full transition-all duration-300"></span>
             </button>
             <button 
               onClick={() => scrollToSection('digital-menu')} 
-              className="hover:text-brand-accent transition-colors cursor-pointer"
+              className="relative py-1 hover:text-brand-accent transition-all duration-300 cursor-pointer hover:scale-105 active:scale-95 group font-medium"
               id="nav-menu-btn"
             >
-              Digital Menu
+              <span>Digital Menu</span>
+              <span className="absolute left-0 -bottom-0.5 w-0 h-[1.5px] bg-brand-accent group-hover:w-full transition-all duration-300"></span>
             </button>
             <button 
               onClick={() => scrollToSection('community-ugc')} 
-              className="hover:text-brand-accent transition-colors cursor-pointer"
+              className="relative py-1 hover:text-brand-accent transition-all duration-300 cursor-pointer hover:scale-105 active:scale-95 group font-medium"
               id="nav-ugc-btn"
             >
-              Social Proof
+              <span>Social Proof</span>
+              <span className="absolute left-0 -bottom-0.5 w-0 h-[1.5px] bg-brand-accent group-hover:w-full transition-all duration-300"></span>
             </button>
             <button 
               onClick={() => scrollToSection('services-bar')} 
-              className="hover:text-brand-accent transition-colors cursor-pointer"
+              className="relative py-1 hover:text-brand-accent transition-all duration-300 cursor-pointer hover:scale-105 active:scale-95 group font-medium"
               id="nav-services-btn"
             >
-              Remote Work
+              <span>Remote Work</span>
+              <span className="absolute left-0 -bottom-0.5 w-0 h-[1.5px] bg-brand-accent group-hover:w-full transition-all duration-300"></span>
             </button>
           </div>
 
@@ -81,7 +85,7 @@ export default function Navbar({ preOrdersCount }: NavbarProps) {
             {preOrdersCount > 0 && (
               <button
                 onClick={() => scrollToSection('digital-menu')}
-                className="hidden sm:inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-brand-accent/10 border border-brand-accent/20 text-xs text-brand-accent font-mono tracking-wide animation-pulse"
+                className="hidden sm:inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-brand-accent/10 border border-brand-accent/20 text-xs text-brand-accent font-mono tracking-wide animation-pulse hover:bg-brand-accent/20 transition-colors"
                 id="navbar-tray-count-indicator"
               >
                 <span className="relative flex h-2 w-2">
@@ -94,7 +98,7 @@ export default function Navbar({ preOrdersCount }: NavbarProps) {
 
             <button 
               onClick={() => scrollToSection('table-reservation')}
-              className="px-5 py-2.5 rounded-full bg-brand-accent hover:bg-brand-accent-hover text-white font-sans font-bold text-xs uppercase tracking-wider transition-all cursor-pointer shadow-md shadow-brand-accent/10"
+              className="px-5 py-2.5 rounded-full bg-brand-accent hover:bg-brand-accent-hover text-white font-sans font-bold text-xs uppercase tracking-wider transition-all duration-300 cursor-pointer shadow-md shadow-brand-accent/10 hover:scale-105 hover:shadow-lg hover:shadow-brand-accent/25 active:scale-95"
               id="navbar-reserve-cta"
             >
               Book a Table

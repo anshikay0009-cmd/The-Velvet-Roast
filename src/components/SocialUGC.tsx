@@ -67,7 +67,7 @@ export default function SocialUGC() {
           {posts.map((post) => (
             <div 
               key={post.id} 
-              className="bg-brand-card border border-brand-border rounded-2xl overflow-hidden group hover:border-brand-accent/30 transition-all duration-300 flex flex-col justify-between hover:shadow-md"
+              className="bg-brand-card border border-brand-border rounded-2xl overflow-hidden group hover:border-brand-accent/55 hover:shadow-xl hover:-translate-y-1.5 transition-all duration-350 flex flex-col justify-between"
               id={`ugc-post-${post.id}`}
             >
               {/* Post Header */}

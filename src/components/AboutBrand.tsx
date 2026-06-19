@@ -32,8 +32,8 @@ export default function AboutBrand() {
             </div>
             
             {/* Pop-out Badge */}
-            <div className="absolute -bottom-6 -right-4 bg-brand-card border border-brand-border p-4 rounded-xl shadow-md flex items-center space-x-3 max-w-[200px]">
-              <div className="p-2.5 rounded-lg bg-brand-accent/10 text-brand-accent">
+            <div className="absolute -bottom-6 -right-4 bg-brand-card border border-brand-border hover:border-brand-accent/50 hover:shadow-xl hover:shadow-brand-accent/5 hover:scale-108 transition-all duration-300 p-4 rounded-xl shadow-md flex items-center space-x-3 max-w-[200px] cursor-default group/badge">
+              <div className="p-2.5 rounded-lg bg-brand-accent/10 text-brand-accent group-hover/badge:bg-brand-accent group-hover/badge:text-white transition-colors duration-300">
                 <Award className="w-5 h-5" />
               </div>
               <div>
@@ -61,25 +61,25 @@ export default function AboutBrand() {
               We operate at the intersection of specialty extraction and dynamic hospitality. Built for a generation that demands both aesthetic inspiration and hyper-connected utility, our space is continuously tuned for comfortable remote work, deep conversations, and visual tranquility.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
-              <div className="flex items-start space-x-3.5">
-                <div className="p-2 bg-brand-secondary rounded-lg text-brand-accent mt-1">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+              <div className="flex items-start space-x-3.5 p-3.5 rounded-xl border border-transparent hover:border-brand-border hover:bg-brand-secondary/30 transition-all duration-300 cursor-default group/item">
+                <div className="p-2 bg-brand-secondary rounded-lg text-brand-accent mt-1 group-hover/item:bg-brand-accent group-hover/item:text-white transition-all duration-300">
                   <Flame className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="font-sans font-semibold text-brand-text text-sm mb-1">Micro-Lot Roasting</h4>
+                  <h4 className="font-sans font-semibold text-brand-text text-sm mb-1 group-hover/item:text-brand-accent transition-colors duration-300">Micro-Lot Roasting</h4>
                   <p className="font-sans text-brand-text/60 text-xs leading-relaxed font-light">
                     Small-batch profiles roasted in-house to capture natural tasting notes of raspberry, bergamot, and rich volcanic cocoa.
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-start space-x-3.5">
-                <div className="p-2 bg-brand-secondary rounded-lg text-brand-accent mt-1">
+              <div className="flex items-start space-x-3.5 p-3.5 rounded-xl border border-transparent hover:border-brand-border hover:bg-brand-secondary/30 transition-all duration-300 cursor-default group/item">
+                <div className="p-2 bg-brand-secondary rounded-lg text-brand-accent mt-1 group-hover/item:bg-brand-accent group-hover/item:text-white transition-all duration-300">
                   <Star className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="font-sans font-semibold text-brand-text text-sm mb-1">Pioneering Plant Arts</h4>
+                  <h4 className="font-sans font-semibold text-brand-text text-sm mb-1 group-hover/item:text-brand-accent transition-colors duration-300">Pioneering Plant Arts</h4>
                   <p className="font-sans text-brand-text/60 text-xs leading-relaxed font-light">
                     From organic charcoal infusions to rosewater house distillates, our menu elevates daily botanicals into liquid art.
                   </p>
