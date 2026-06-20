@@ -17,9 +17,14 @@ import ReservationSection from './components/ReservationSection';
 import NotificationReceipt from './components/NotificationReceipt';
 import Footer from './components/Footer';
 import { Reservation } from './types';
-import { Armchair, Coffee, HelpCircle, Star, Sparkles } from 'lucide-react';
+import { Armchair, Coffee, HelpCircle, Star, Sparkles, ArrowLeftRight } from 'lucide-react';
+import AdminDashboard from './components/AdminDashboard';
+import { MENU_ITEMS } from './data/cafeData';
 
 export default function App() {
+  // View mode switcher state: 'customer' (default) or 'admin'
+  const [viewMode, setViewMode] = useState<'customer' | 'admin'>('customer');
+
   // Pre-orders basket state
   const [preOrders, setPreOrders] = useState<{ [itemId: string]: number }>({});
   
@@ -74,6 +79,40 @@ export default function App() {
 
   const handleBookingSuccess = (reservation: Reservation) => {
     setConfirmedReservation(reservation);
+    
+    // Auto-create corresponding Order in localStorage so it reflects in the Staff Dashboard live
+    if (reservation.preOrders && reservation.preOrders.length > 0) {
+      const orderItems = reservation.preOrders.map(pre => {
+        const menuItem = MENU_ITEMS.find(m => m.id === pre.menuItemId);
+        return {
+          name: menuItem ? menuItem.name : 'Unknown Item',
+          quantity: pre.quantity,
+          price: menuItem ? menuItem.price : 0
+        };
+      });
+
+      const totalBill = orderItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+      const newOrder: any = {
+        id: `#O-${Math.floor(1000 + Math.random() * 9000)}`,
+        customer_name: reservation.name,
+        total_amount_inr: totalBill,
+        items: orderItems,
+        status: 'pending',
+        created_at: new Date().toISOString()
+      };
+
+      try {
+        const storedOrders = localStorage.getItem('cafe_orders_db');
+        let currentOrders = [];
+        if (storedOrders) {
+          currentOrders = JSON.parse(storedOrders);
+        }
+        localStorage.setItem('cafe_orders_db', JSON.stringify([newOrder, ...currentOrders]));
+      } catch (err) {
+        console.error('Error auto-creating order slip:', err);
+      }
+    }
   };
 
   const handleCloseReceipt = () => {
@@ -89,6 +128,10 @@ export default function App() {
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
+
+  if (viewMode === 'admin') {
+    return <AdminDashboard onToggleView={() => setViewMode('customer')} />;
+  }
 
   return (
     <div className="bg-brand-bg min-h-screen text-brand-text relative overflow-x-hidden">
@@ -185,6 +228,19 @@ export default function App() {
           onClose={handleCloseReceipt}
         />
       )}
+
+      {/* PERSISTENT FLOATING VIEW MODE SWITCHER (Bottom-Left) */}
+      <div className="fixed bottom-6 left-6 z-50">
+        <button
+          onClick={() => setViewMode('admin')}
+          className="flex items-center space-x-2 px-4 py-3.5 bg-stone-950 hover:bg-stone-900 border border-stone-800 text-stone-100 font-mono text-[10px] uppercase tracking-widest rounded-full shadow-2xl transition-all select-none cursor-pointer hover:scale-105 active:scale-95"
+          id="portal-view-switcher"
+          title="Switch to Staff Admin Lounge Controller"
+        >
+          <ArrowLeftRight className="w-4 h-4 text-brand-accent-warm mr-0.5" />
+          <span>Staff Portal</span>
+        </button>
+      </div>
 
       {/* FLOATING VIEWPORT CTA: Persistent "Book a Table" anchor in the lower right bottom viewport */}
       <AnimatePresence>

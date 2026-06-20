@@ -1,6 +1,6 @@
 {
-  "name": "Cafe Digital Presence & Pre-Booking",
-  "description": "An aesthetic high-converting website featuring an interactive digital menu, table pre-order basket, and visual zone seating layouts.",
+  "name": "The Velvet Roast Cafe & Controller Dashboard",
+  "description": "An aesthetic high-converting website featuring an interactive digital menu, table pre-order basket, and visual zone seating layouts, matched with a robust real-time staff controller dashboard.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
