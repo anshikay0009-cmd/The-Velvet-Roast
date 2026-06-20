@@ -57,7 +57,7 @@ export default function NotificationReceipt({
     const details = encodeURIComponent(
       `Table Reservation Receipt.\n\nGuest Name: ${reservation.name}\nTable ID: ${reservation.tableId} (${reservation.seatingPreference.toUpperCase()} Zone)\nParty Size: ${reservation.guests} Guests\n\nEnjoy your gourmet pastries & specialty brews!`
     );
-    const location = encodeURIComponent('The Velvet Roast Bistro & Gardens, NYC');
+    const location = encodeURIComponent('The Velvet Roast Bistro & Gardens, Colaba, Mumbai');
 
     return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
   }, [reservation]);
@@ -74,7 +74,7 @@ export default function NotificationReceipt({
       `DTEND:${formattedDate}T${parseInt(startHourStr, 15) ? parseInt(startHourStr, 15)+130 : '1430'}00`,
       'SUMMARY:Table Booking at The Velvet Roast',
       `DESCRIPTION:Reservation Code: ${reservation.id}\\nGuest: ${reservation.name}\\nTable: ${reservation.tableId}\\nZone: ${reservation.seatingPreference}`,
-      'LOCATION:The Velvet Roast Bistro & Gardens\\, NYC',
+      'LOCATION:The Velvet Roast Bistro & Gardens\\, Colaba\\, Mumbai',
       'END:VEVENT',
       'END:VCALENDAR'
     ].join('\n');
@@ -182,12 +182,12 @@ export default function NotificationReceipt({
                         <span className="font-mono text-brand-accent font-bold shrink-0">x{pre.qty}</span>
                         <span className="truncate font-light">{pre.name}</span>
                       </div>
-                      <span className="font-mono text-brand-text/60 shrink-0">${(pre.price * pre.qty).toFixed(2)}</span>
+                      <span className="font-mono text-brand-text/60 shrink-0">₹{pre.price * pre.qty}</span>
                     </div>
                   ))}
                   <div className="flex items-center justify-between text-xs font-sans pt-2 border-t border-brand-border mt-1">
                     <span className="font-semibold text-brand-text">Tray Total</span>
-                    <span className="font-mono font-bold text-brand-accent">${preOrderTotal.toFixed(2)}</span>
+                    <span className="font-mono font-bold text-brand-accent">₹{preOrderTotal}</span>
                   </div>
                 </div>
               ) : (

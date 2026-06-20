@@ -138,7 +138,7 @@ export default function MenuSection({
                   </p>
                   <div className="flex items-center justify-between">
                     <span className="font-mono text-sm font-semibold text-brand-text">
-                      ${item.price.toFixed(2)}
+                      ₹{item.price}
                     </span>
                     
                     {preOrders[item.id] ? (
@@ -317,7 +317,7 @@ export default function MenuSection({
 
                 <div className="flex items-center justify-between pt-4 border-t border-brand-border">
                   <span className="font-mono text-lg font-bold text-brand-text">
-                    ${item.price.toFixed(2)}
+                    ₹{item.price}
                   </span>
 
                   {preOrders[item.id] ? (
@@ -399,7 +399,7 @@ export default function MenuSection({
               <div className="flex items-center space-x-6">
                 <div className="text-right">
                   <p className="font-sans text-[10px] uppercase text-brand-text/50 tracking-wider">Subtotal</p>
-                  <p className="font-mono text-2xl font-bold text-brand-text">${basketDetails.totalPrice.toFixed(2)}</p>
+                  <p className="font-mono text-2xl font-bold text-brand-text">₹{basketDetails.totalPrice}</p>
                 </div>
                 <div className="flex space-x-3">
                   <button 

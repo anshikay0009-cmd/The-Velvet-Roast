@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Gift, Sparkles, Award, Coffee, Mail, Check, ArrowRight } from 'lucide-react';
 
 export default function LoyaltyProgram() {
@@ -27,7 +27,7 @@ export default function LoyaltyProgram() {
   const loyaltyTiers = [
     {
       points: '10 Points',
-      title: 'Per $1 Pre-Ordered',
+      title: 'Per ₹100 Pre-Ordered',
       description: 'Earn rich points automatically on artisanal coffees, slow-bar sips, and freshly baked pastries pre-scheduled with your seat.'
     },
     {

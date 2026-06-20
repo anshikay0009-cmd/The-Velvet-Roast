@@ -288,7 +288,7 @@ export default function ReservationSection({
                     </label>
                     <input 
                       type="tel" 
-                      placeholder="+1 (212) 555-0198" 
+                      placeholder="+91 98200 98200" 
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       className="w-full bg-brand-bg border border-brand-border text-brand-text text-xs rounded-xl p-3 focus:outline-none focus:border-brand-accent placeholder-brand-text/40"
@@ -520,7 +520,7 @@ export default function ReservationSection({
               <div className="mt-6 flex items-start space-x-3 text-brand-text/60 text-xs bg-brand-secondary/40 border border-brand-border p-4 rounded-xl shadow-inner" id="reserve-warning">
                 <HelpCircle className="w-5 h-5 text-brand-accent shrink-0 mt-0.5" />
                 <p className="font-sans leading-relaxed">
-                  <span className="font-semibold text-brand-text">Table Retention Limit:</span> Reservations are held for a maximum of 15 minutes past the slot. For parties larger than 6 guests, please contact our physical VIP desk directly at +1 (212) 555-0155.
+                  <span className="font-semibold text-brand-text">Table Retention Limit:</span> Reservations are held for a maximum of 15 minutes past the slot. For parties larger than 6 guests, please contact our physical VIP desk directly at +91 (22) 6911 2000.
                 </p>
               </div>
 
