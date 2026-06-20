@@ -29,6 +29,7 @@ export default function App() {
   const [showStaffLoginModal, setShowStaffLoginModal] = useState(false);
   const [passcode, setPasscode] = useState('');
   const [passcodeError, setPasscodeError] = useState(false);
+  const [showForgotPinInstructions, setShowForgotPinInstructions] = useState(false);
 
   // Pre-orders basket state
   const [preOrders, setPreOrders] = useState<{ [itemId: string]: number }>({});
@@ -224,7 +225,7 @@ export default function App() {
       </main>
 
       {/* OUTLET CONTACTS & COMPREHENSIVE LINKS FOOTER */}
-      <Footer onStaffPortalClick={() => { setShowStaffLoginModal(true); setPasscode(''); setPasscodeError(false); }} />
+      <Footer onStaffPortalClick={() => { setShowStaffLoginModal(true); setPasscode(''); setPasscodeError(false); setShowForgotPinInstructions(false); }} />
 
       {/* TRANSACTION OVERLAY MODAL */}
       {confirmedReservation && (
@@ -256,71 +257,100 @@ export default function App() {
               </p>
             </header>
 
-            <form 
-              onSubmit={(e) => {
-                e.preventDefault();
-                if (passcode === '8844') {
-                  setViewMode('admin');
-                  setShowStaffLoginModal(false);
-                } else {
-                  setPasscodeError(true);
-                }
-              }}
-              className="space-y-4"
-              id="staff-pin-form"
-            >
-              <div>
-                <label className="block text-[10px] font-mono text-brand-text/50 uppercase text-center mb-2">
-                  Security Passcode PIN
-                </label>
-                <input
-                  type="password"
-                  maxLength={4}
-                  placeholder="••••"
-                  value={passcode}
-                  onChange={(e) => {
-                    const val = e.target.value.replace(/\D/g, ''); // Numeric only
-                    setPasscode(val);
-                    setPasscodeError(false);
-                  }}
-                  className={`w-full tracking-widest text-center font-mono text-xl font-bold bg-[#FAF6F0] border ${
-                    passcodeError ? 'border-red-500 text-red-700 ring-2 ring-red-100' : 'border-brand-border text-brand-text focus:border-brand-accent focus:ring-1 focus:ring-brand-accent'
-                  } rounded-2xl py-3 px-4 focus:outline-none transition-all placeholder:text-[#1F2421]/20`}
-                  id="staff-passcode-input"
-                  autoFocus
-                />
-                
-                {passcodeError && (
-                  <p className="text-center text-red-600 text-[10px] font-mono font-semibold mt-2" id="staff-pin-error">
-                    🚨 Invalid PIN! Please try again.
+            {showForgotPinInstructions ? (
+              <div className="space-y-4" id="forgot-pin-instructions-view">
+                <div className="bg-[#FAF6F0] p-4 rounded-xl border border-brand-border/60 text-xs text-brand-text/80 space-y-2.5">
+                  <h5 className="font-serif font-bold text-xs text-brand-text flex items-center gap-1.5">
+                    ⚙️ Manager Reset Policy
+                  </h5>
+                  <p className="font-sans leading-relaxed text-[11px]">
+                    To reset the staff passcode PIN, the system administrator must update the source comparator in a secure container deployment.
                   </p>
-                )}
-              </div>
+                  <p className="font-sans leading-relaxed text-[10px] text-[#1F2421]/60">
+                    Please reference the Velvet Lounge operational procedures or contact your General Manager to authorize terminal updates.
+                  </p>
+                </div>
 
-              {/* Secure note */}
-              <div className="bg-[#FAF6F0] border border-brand-border/60 rounded-xl p-3 text-[10px] text-brand-text/50 leading-relaxed font-mono flex items-start space-x-2">
-                <span className="text-brand-accent">ℹ</span>
-                <span>For evaluation & review, enter the Velvet staff credential code <strong className="text-brand-accent font-bold">8844</strong>.</span>
-              </div>
-
-              <div className="flex space-x-2 pt-2">
                 <button
                   type="button"
-                  onClick={() => setShowStaffLoginModal(false)}
-                  className="flex-1 py-3 bg-stone-100 hover:bg-stone-200 text-stone-700 rounded-xl font-sans font-bold text-xs uppercase tracking-wider transition-all cursor-pointer"
-                  id="cancel-staff-btn"
+                  onClick={() => setShowForgotPinInstructions(false)}
+                  className="w-full py-3 bg-brand-accent hover:bg-brand-accent-hover text-white rounded-xl font-sans font-bold text-xs uppercase tracking-wider shadow-sm transition-all cursor-pointer"
+                  id="back-to-login-btn"
                 >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="flex-1 py-3 bg-brand-accent hover:bg-brand-accent-hover text-white rounded-xl font-sans font-bold text-xs uppercase tracking-wider shadow-sm transition-all cursor-pointer"
-                  id="verify-staff-btn"
-                >
-                  Verify
+                  Back to Login
                 </button>
               </div>
-            </form>
+            ) : (
+              <form 
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  if (passcode === '8844') {
+                    setViewMode('admin');
+                    setShowStaffLoginModal(false);
+                  } else {
+                    setPasscodeError(true);
+                  }
+                }}
+                className="space-y-4"
+                id="staff-pin-form"
+              >
+                <div>
+                  <label className="block text-[10px] font-mono text-brand-text/50 uppercase text-center mb-2">
+                    Security Passcode PIN
+                  </label>
+                  <input
+                    type="password"
+                    maxLength={4}
+                    placeholder="••••"
+                    value={passcode}
+                    onChange={(e) => {
+                      const val = e.target.value.replace(/\D/g, ''); // Numeric only
+                      setPasscode(val);
+                      setPasscodeError(false);
+                    }}
+                    className={`w-full tracking-widest text-center font-mono text-xl font-bold bg-[#FAF6F0] border ${
+                      passcodeError ? 'border-red-500 text-red-700 ring-2 ring-red-100' : 'border-brand-border text-brand-text focus:border-brand-accent focus:ring-1 focus:ring-brand-accent'
+                    } rounded-2xl py-3 px-4 focus:outline-none transition-all placeholder:text-[#1F2421]/20`}
+                    id="staff-passcode-input"
+                    autoFocus
+                  />
+                  
+                  <div className="flex justify-between items-center mt-2.5 px-1">
+                    <button
+                      type="button"
+                      onClick={() => setShowForgotPinInstructions(true)}
+                      className="text-[10px] font-mono text-brand-accent hover:text-brand-accent-hover underline cursor-pointer"
+                      id="forgot-pin-trigger"
+                    >
+                      Forgot PIN?
+                    </button>
+                    {passcodeError && (
+                      <p className="text-red-600 text-[10px] font-mono font-semibold" id="staff-pin-error">
+                        🚨 Invalid PIN
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                <div className="flex space-x-2 pt-2">
+                  <button
+                    type="button"
+                    onClick={() => setShowStaffLoginModal(false)}
+                    className="flex-1 py-3 bg-stone-100 hover:bg-stone-200 text-stone-700 rounded-xl font-sans font-bold text-xs uppercase tracking-wider transition-all cursor-pointer"
+                    id="cancel-staff-btn"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    className="flex-1 py-3 bg-brand-accent hover:bg-brand-accent-hover text-white rounded-xl font-sans font-bold text-xs uppercase tracking-wider shadow-sm transition-all cursor-pointer"
+                    id="verify-staff-btn"
+                  >
+                    Verify
+                  </button>
+                </div>
+              </form>
+            )}
           </div>
         </div>
       )}
