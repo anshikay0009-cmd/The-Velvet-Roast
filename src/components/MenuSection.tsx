@@ -321,30 +321,32 @@ export default function MenuSection({
                   </span>
 
                   {preOrders[item.id] ? (
-                    <div className="flex items-center space-x-3 bg-brand-accent text-white rounded-full py-1.5 px-3.5 text-xs font-bold shadow-lg">
+                    <div className="flex items-center space-x-3 bg-brand-accent text-white rounded-full py-1.5 px-3.5 text-xs font-bold shadow-md shadow-brand-accent/25 hover:shadow-lg hover:shadow-brand-accent/35 transition-all duration-300 hover:scale-[1.02]">
                       <button 
                         onClick={() => onRemovePreOrder(item.id)}
-                        className="hover:scale-110 active:scale-90 text-white focus:outline-none"
+                        className="p-1 rounded-full hover:bg-white/20 hover:scale-115 active:scale-90 text-white focus:outline-none transition-all duration-200 flex items-center justify-center"
                         id={`menu-card-sub-${item.id}`}
+                        title="Remove 1 from tray"
                       >
-                        <Minus className="w-3.5 h-3.5 stroke-[2.5]" />
+                        <Minus className="w-3 h-3 stroke-[3]" />
                       </button>
-                      <span className="font-mono text-sm w-4 text-center text-white">{preOrders[item.id]}</span>
+                      <span className="font-mono text-sm w-4 text-center text-white select-none">{preOrders[item.id]}</span>
                       <button 
                         onClick={() => onAddPreOrder(item.id)}
-                        className="hover:scale-110 active:scale-90 text-white focus:outline-none"
+                        className="p-1 rounded-full hover:bg-white/20 hover:scale-115 active:scale-90 text-white focus:outline-none transition-all duration-200 flex items-center justify-center"
                         id={`menu-card-add-${item.id}`}
+                        title="Add 1 more to tray"
                       >
-                        <Plus className="w-3.5 h-3.5 stroke-[2.5]" />
+                        <Plus className="w-3 h-3 stroke-[3]" />
                       </button>
                     </div>
                   ) : (
                     <button 
                       onClick={() => onAddPreOrder(item.id)}
-                      className="flex items-center space-x-1.5 px-4.5 py-2 bg-brand-secondary border border-brand-border text-brand-text/80 hover:bg-brand-accent hover:text-white hover:border-brand-accent rounded-full text-xs font-semibold tracking-wide transition-all duration-350 cursor-pointer shadow-sm"
+                      className="group/select flex items-center space-x-1.5 px-4.5 py-2 bg-brand-secondary border border-brand-border text-brand-text/80 hover:bg-brand-accent hover:text-white hover:border-brand-accent rounded-full text-xs font-semibold tracking-wide transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 active:scale-95 cursor-pointer shadow-sm hover:shadow-md hover:shadow-brand-accent/20"
                       id={`menu-card-select-btn-${item.id}`}
                     >
-                      <Plus className="w-3.5 h-3.5" />
+                      <Plus className="w-3.5 h-3.5 transition-transform duration-300 group-hover/select:rotate-90" />
                       <span>Select</span>
                     </button>
                   )}

@@ -207,6 +207,7 @@ export default function App() {
               className="group/btn flex items-center space-x-2.5 px-5 py-3.5 bg-brand-accent text-white rounded-full font-sans font-bold text-xs uppercase tracking-wide hover:shadow-2xl hover:shadow-brand-accent/25 active:scale-95 transition-transform border border-brand-accent-hover select-none cursor-pointer"
               id="persistent-floating-cta"
               title="Book Your Selected Spots Instantly"
+              aria-label={preOrdersCount > 0 ? `Book a Spot with ${preOrdersCount} pre-ordered item${preOrdersCount === 1 ? '' : 's'} in tray` : 'Book a Spot'}
             >
               <Armchair className="w-4.5 h-4.5" />
               <span>Book a Spot</span>
