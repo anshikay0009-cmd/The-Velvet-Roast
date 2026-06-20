@@ -32,7 +32,7 @@ export default function AboutBrand() {
             </div>
             
             {/* Pop-out Badge */}
-            <div className="absolute -bottom-6 -right-4 bg-brand-card border border-brand-border hover:border-brand-accent/50 hover:shadow-xl hover:shadow-brand-accent/5 hover:scale-108 transition-all duration-300 p-4 rounded-xl shadow-md flex items-center space-x-3 max-w-[200px] cursor-default group/badge">
+            <div className="absolute -bottom-6 -right-2 sm:-right-4 bg-brand-card border border-brand-border hover:border-brand-accent/50 hover:shadow-xl hover:shadow-brand-accent/5 hover:scale-108 transition-all duration-300 p-4 rounded-xl shadow-md flex items-center space-x-3 max-w-[190px] sm:max-w-[200px] cursor-default group/badge">
               <div className="p-2.5 rounded-lg bg-brand-accent/10 text-brand-accent group-hover/badge:bg-brand-accent group-hover/badge:text-white transition-colors duration-300">
                 <Award className="w-5 h-5" />
               </div>

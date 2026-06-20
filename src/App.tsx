@@ -90,7 +90,7 @@ export default function App() {
   };
 
   return (
-    <div className="bg-brand-bg min-h-screen text-brand-text relative">
+    <div className="bg-brand-bg min-h-screen text-brand-text relative overflow-x-hidden">
       
       {/* Decorative top soft warm lights panel */}
       <div className="absolute top-0 inset-x-0 h-[600px] bg-gradient-to-b from-brand-accent/5 via-transparent to-transparent pointer-events-none z-0"></div>

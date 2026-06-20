@@ -95,7 +95,7 @@ export default function Navbar({ preOrdersCount }: NavbarProps) {
           </div>
 
           {/* Center Column: Navigation links for desktop */}
-          <nav className="hidden md:flex items-center space-x-1 lg:space-x-3 mx-4" id="navbar-desktop-nav">
+          <nav className="hidden lg:flex items-center space-x-1 lg:space-x-3 mx-4" id="navbar-desktop-nav">
             {navMenuItems.map((item) => {
               const isActive = activeSection === item.id;
               return (
@@ -143,7 +143,7 @@ export default function Navbar({ preOrdersCount }: NavbarProps) {
             {/* Mobile Hamburger Menu Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-xl text-brand-text/70 hover:text-brand-accent hover:bg-brand-secondary/60 md:hidden transition-colors cursor-pointer"
+              className="p-2 rounded-xl text-brand-text/70 hover:text-brand-accent hover:bg-brand-secondary/60 lg:hidden transition-colors cursor-pointer"
               title="Toggle Navigation Menu"
               aria-label="Toggle Navigation Menu"
             >
@@ -156,7 +156,7 @@ export default function Navbar({ preOrdersCount }: NavbarProps) {
 
       {/* Mobile Menu Dropdown Panel */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-brand-border bg-brand-bg/95 backdrop-blur-lg py-4 px-4 shadow-xl flex flex-col space-y-2 animate-fade-in-down" id="navbar-mobile-nav">
+        <div className="lg:hidden border-t border-brand-border bg-brand-bg/95 backdrop-blur-lg py-4 px-4 shadow-xl flex flex-col space-y-2 animate-fade-in-down" id="navbar-mobile-nav">
           <p className="font-mono text-[8px] uppercase tracking-[0.35em] text-brand-accent/60 font-bold px-3 mb-1">
             — Browse Sections —
           </p>
