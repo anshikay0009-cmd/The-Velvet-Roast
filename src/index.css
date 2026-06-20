@@ -6,14 +6,16 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
-  --color-brand-bg: #FDFBF7;
+  --color-brand-bg: #FAF6F0;
   --color-brand-card: #FFFFFF;
-  --color-brand-secondary: #F5F2ED;
-  --color-brand-text: #2D2A26;
-  --color-brand-accent: #5A5A40;
-  --color-brand-accent-hover: #454530;
-  --color-brand-border: rgba(45, 42, 38, 0.1);
-  --color-brand-border-muted: rgba(45, 42, 38, 0.05);
+  --color-brand-secondary: #F1EBE1;
+  --color-brand-text: #1F2421;
+  --color-brand-accent: #2A5C3D;
+  --color-brand-accent-hover: #1D442B;
+  --color-brand-accent-warm: #C87D43;
+  --color-brand-accent-warm-hover: #AF6A33;
+  --color-brand-border: rgba(31, 36, 33, 0.08);
+  --color-brand-border-muted: rgba(31, 36, 33, 0.04);
 }
 
 @layer utilities {
