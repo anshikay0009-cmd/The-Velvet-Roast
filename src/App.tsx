@@ -17,20 +17,10 @@ import ReservationSection from './components/ReservationSection';
 import NotificationReceipt from './components/NotificationReceipt';
 import Footer from './components/Footer';
 import { Reservation } from './types';
-import { Armchair, Coffee, HelpCircle, Star, Sparkles, ArrowLeftRight } from 'lucide-react';
-import AdminDashboard from './components/AdminDashboard';
+import { Armchair, Coffee, HelpCircle, Star, Sparkles } from 'lucide-react';
 import { MENU_ITEMS } from './data/cafeData';
 
 export default function App() {
-  // View mode switcher state: 'customer' (default) or 'admin'
-  const [viewMode, setViewMode] = useState<'customer' | 'admin'>('customer');
-
-  // Staff Authentication States
-  const [showStaffLoginModal, setShowStaffLoginModal] = useState(false);
-  const [passcode, setPasscode] = useState('');
-  const [passcodeError, setPasscodeError] = useState(false);
-  const [showForgotPinInstructions, setShowForgotPinInstructions] = useState(false);
-
   // Pre-orders basket state
   const [preOrders, setPreOrders] = useState<{ [itemId: string]: number }>({});
   
@@ -135,10 +125,6 @@ export default function App() {
     }
   };
 
-  if (viewMode === 'admin') {
-    return <AdminDashboard onToggleView={() => setViewMode('customer')} />;
-  }
-
   return (
     <div className="bg-brand-bg min-h-screen text-brand-text relative overflow-x-hidden">
       
@@ -225,7 +211,7 @@ export default function App() {
       </main>
 
       {/* OUTLET CONTACTS & COMPREHENSIVE LINKS FOOTER */}
-      <Footer onStaffPortalClick={() => { setShowStaffLoginModal(true); setPasscode(''); setPasscodeError(false); setShowForgotPinInstructions(false); }} />
+      <Footer />
 
       {/* TRANSACTION OVERLAY MODAL */}
       {confirmedReservation && (
@@ -233,126 +219,6 @@ export default function App() {
           reservation={confirmedReservation}
           onClose={handleCloseReceipt}
         />
-      )}
-
-      {/* SECURE STAFF PORTAL PASSCODE VERIFICATION MODAL */}
-      {showStaffLoginModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-950/85 backdrop-blur-md" id="staff-pin-overlay">
-          <div className="bg-white rounded-3xl border border-brand-border max-w-sm w-full p-6 md:p-8 shadow-2xl relative overflow-hidden" id="staff-pin-modal">
-            {/* Decorative warm glow gradient */}
-            <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-[#2A5C3D]/5 to-transparent -z-10"></div>
-            
-            <header className="text-center pb-4">
-              <div className="w-12 h-12 rounded-2xl bg-[#2A5C3D]/10 text-brand-accent flex items-center justify-center mx-auto mb-3">
-                <Coffee className="w-6 h-6 animate-pulse" />
-              </div>
-              <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-[#C87D43] font-bold">
-                Staff Authentication
-              </span>
-              <h4 className="font-serif text-xl text-brand-text mt-1 font-bold">
-                Lounge Controller Entry
-              </h4>
-              <p className="text-[11px] text-[#1F2421]/60 font-light mt-1">
-                Enter your 4-digit staff PIN to access active order streams and table nests.
-              </p>
-            </header>
-
-            {showForgotPinInstructions ? (
-              <div className="space-y-4" id="forgot-pin-instructions-view">
-                <div className="bg-[#FAF6F0] p-4 rounded-xl border border-brand-border/60 text-xs text-brand-text/80 space-y-2.5">
-                  <h5 className="font-serif font-bold text-xs text-brand-text flex items-center gap-1.5">
-                    ⚙️ Manager Reset Policy
-                  </h5>
-                  <p className="font-sans leading-relaxed text-[11px]">
-                    To reset the staff passcode PIN, the system administrator must update the source comparator in a secure container deployment.
-                  </p>
-                  <p className="font-sans leading-relaxed text-[10px] text-[#1F2421]/60">
-                    Please reference the Velvet Lounge operational procedures or contact your General Manager to authorize terminal updates.
-                  </p>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={() => setShowForgotPinInstructions(false)}
-                  className="w-full py-3 bg-brand-accent hover:bg-brand-accent-hover text-white rounded-xl font-sans font-bold text-xs uppercase tracking-wider shadow-sm transition-all cursor-pointer"
-                  id="back-to-login-btn"
-                >
-                  Back to Login
-                </button>
-              </div>
-            ) : (
-              <form 
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  if (passcode === '8844') {
-                    setViewMode('admin');
-                    setShowStaffLoginModal(false);
-                  } else {
-                    setPasscodeError(true);
-                  }
-                }}
-                className="space-y-4"
-                id="staff-pin-form"
-              >
-                <div>
-                  <label className="block text-[10px] font-mono text-brand-text/50 uppercase text-center mb-2">
-                    Security Passcode PIN
-                  </label>
-                  <input
-                    type="password"
-                    maxLength={4}
-                    placeholder="••••"
-                    value={passcode}
-                    onChange={(e) => {
-                      const val = e.target.value.replace(/\D/g, ''); // Numeric only
-                      setPasscode(val);
-                      setPasscodeError(false);
-                    }}
-                    className={`w-full tracking-widest text-center font-mono text-xl font-bold bg-[#FAF6F0] border ${
-                      passcodeError ? 'border-red-500 text-red-700 ring-2 ring-red-100' : 'border-brand-border text-brand-text focus:border-brand-accent focus:ring-1 focus:ring-brand-accent'
-                    } rounded-2xl py-3 px-4 focus:outline-none transition-all placeholder:text-[#1F2421]/20`}
-                    id="staff-passcode-input"
-                    autoFocus
-                  />
-                  
-                  <div className="flex justify-between items-center mt-2.5 px-1">
-                    <button
-                      type="button"
-                      onClick={() => setShowForgotPinInstructions(true)}
-                      className="text-[10px] font-mono text-brand-accent hover:text-brand-accent-hover underline cursor-pointer"
-                      id="forgot-pin-trigger"
-                    >
-                      Forgot PIN?
-                    </button>
-                    {passcodeError && (
-                      <p className="text-red-600 text-[10px] font-mono font-semibold" id="staff-pin-error">
-                        🚨 Invalid PIN
-                      </p>
-                    )}
-                  </div>
-                </div>
-
-                <div className="flex space-x-2 pt-2">
-                  <button
-                    type="button"
-                    onClick={() => setShowStaffLoginModal(false)}
-                    className="flex-1 py-3 bg-stone-100 hover:bg-stone-200 text-stone-700 rounded-xl font-sans font-bold text-xs uppercase tracking-wider transition-all cursor-pointer"
-                    id="cancel-staff-btn"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    className="flex-1 py-3 bg-brand-accent hover:bg-brand-accent-hover text-white rounded-xl font-sans font-bold text-xs uppercase tracking-wider shadow-sm transition-all cursor-pointer"
-                    id="verify-staff-btn"
-                  >
-                    Verify
-                  </button>
-                </div>
-              </form>
-            )}
-          </div>
-        </div>
       )}
 
       {/* FLOATING VIEWPORT CTA: Persistent "Book a Table" anchor in the lower right bottom viewport */}
