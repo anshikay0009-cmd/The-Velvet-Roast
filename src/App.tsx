@@ -11,6 +11,7 @@ import ServicesBar from './components/ServicesBar';
 import AboutBrand from './components/AboutBrand';
 import CircularGallery from './components/CircularGallery';
 import SocialUGC from './components/SocialUGC';
+import LoyaltyProgram from './components/LoyaltyProgram';
 import MenuSection from './components/MenuSection';
 import ReservationSection from './components/ReservationSection';
 import NotificationReceipt from './components/NotificationReceipt';
@@ -168,6 +169,9 @@ export default function App() {
 
         {/* COMMUNITY INSTAGRAM UGC CARDS (SOCIAL PROOF) */}
         <SocialUGC />
+
+        {/* LOYALTY PROGRAM (MEMBER POINTS & BENEFITS) */}
+        <LoyaltyProgram />
 
       </main>
 
