@@ -25,6 +25,11 @@ export default function App() {
   // View mode switcher state: 'customer' (default) or 'admin'
   const [viewMode, setViewMode] = useState<'customer' | 'admin'>('customer');
 
+  // Staff Authentication States
+  const [showStaffLoginModal, setShowStaffLoginModal] = useState(false);
+  const [passcode, setPasscode] = useState('');
+  const [passcodeError, setPasscodeError] = useState(false);
+
   // Pre-orders basket state
   const [preOrders, setPreOrders] = useState<{ [itemId: string]: number }>({});
   
@@ -219,7 +224,7 @@ export default function App() {
       </main>
 
       {/* OUTLET CONTACTS & COMPREHENSIVE LINKS FOOTER */}
-      <Footer />
+      <Footer onStaffPortalClick={() => { setShowStaffLoginModal(true); setPasscode(''); setPasscodeError(false); }} />
 
       {/* TRANSACTION OVERLAY MODAL */}
       {confirmedReservation && (
@@ -229,18 +234,96 @@ export default function App() {
         />
       )}
 
-      {/* PERSISTENT FLOATING VIEW MODE SWITCHER (Bottom-Left) */}
-      <div className="fixed bottom-6 left-6 z-50">
-        <button
-          onClick={() => setViewMode('admin')}
-          className="flex items-center space-x-2 px-4 py-3.5 bg-stone-950 hover:bg-stone-900 border border-stone-800 text-stone-100 font-mono text-[10px] uppercase tracking-widest rounded-full shadow-2xl transition-all select-none cursor-pointer hover:scale-105 active:scale-95"
-          id="portal-view-switcher"
-          title="Switch to Staff Admin Lounge Controller"
-        >
-          <ArrowLeftRight className="w-4 h-4 text-brand-accent-warm mr-0.5" />
-          <span>Staff Portal</span>
-        </button>
-      </div>
+      {/* SECURE STAFF PORTAL PASSCODE VERIFICATION MODAL */}
+      {showStaffLoginModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-950/85 backdrop-blur-md" id="staff-pin-overlay">
+          <div className="bg-white rounded-3xl border border-brand-border max-w-sm w-full p-6 md:p-8 shadow-2xl relative overflow-hidden" id="staff-pin-modal">
+            {/* Decorative warm glow gradient */}
+            <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-[#2A5C3D]/5 to-transparent -z-10"></div>
+            
+            <header className="text-center pb-4">
+              <div className="w-12 h-12 rounded-2xl bg-[#2A5C3D]/10 text-brand-accent flex items-center justify-center mx-auto mb-3">
+                <Coffee className="w-6 h-6 animate-pulse" />
+              </div>
+              <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-[#C87D43] font-bold">
+                Staff Authentication
+              </span>
+              <h4 className="font-serif text-xl text-brand-text mt-1 font-bold">
+                Lounge Controller Entry
+              </h4>
+              <p className="text-[11px] text-[#1F2421]/60 font-light mt-1">
+                Enter your 4-digit staff PIN to access active order streams and table nests.
+              </p>
+            </header>
+
+            <form 
+              onSubmit={(e) => {
+                e.preventDefault();
+                if (passcode === '8844') {
+                  setViewMode('admin');
+                  setShowStaffLoginModal(false);
+                } else {
+                  setPasscodeError(true);
+                }
+              }}
+              className="space-y-4"
+              id="staff-pin-form"
+            >
+              <div>
+                <label className="block text-[10px] font-mono text-brand-text/50 uppercase text-center mb-2">
+                  Security Passcode PIN
+                </label>
+                <input
+                  type="password"
+                  maxLength={4}
+                  placeholder="••••"
+                  value={passcode}
+                  onChange={(e) => {
+                    const val = e.target.value.replace(/\D/g, ''); // Numeric only
+                    setPasscode(val);
+                    setPasscodeError(false);
+                  }}
+                  className={`w-full tracking-widest text-center font-mono text-xl font-bold bg-[#FAF6F0] border ${
+                    passcodeError ? 'border-red-500 text-red-700 ring-2 ring-red-100' : 'border-brand-border text-brand-text focus:border-brand-accent focus:ring-1 focus:ring-brand-accent'
+                  } rounded-2xl py-3 px-4 focus:outline-none transition-all placeholder:text-[#1F2421]/20`}
+                  id="staff-passcode-input"
+                  autoFocus
+                />
+                
+                {passcodeError && (
+                  <p className="text-center text-red-600 text-[10px] font-mono font-semibold mt-2" id="staff-pin-error">
+                    🚨 Invalid PIN! Please try again.
+                  </p>
+                )}
+              </div>
+
+              {/* Secure note */}
+              <div className="bg-[#FAF6F0] border border-brand-border/60 rounded-xl p-3 text-[10px] text-brand-text/50 leading-relaxed font-mono flex items-start space-x-2">
+                <span className="text-brand-accent">ℹ</span>
+                <span>For evaluation & review, enter the Velvet staff credential code <strong className="text-brand-accent font-bold">8844</strong>.</span>
+              </div>
+
+              <div className="flex space-x-2 pt-2">
+                <button
+                  type="button"
+                  onClick={() => setShowStaffLoginModal(false)}
+                  className="flex-1 py-3 bg-stone-100 hover:bg-stone-200 text-stone-700 rounded-xl font-sans font-bold text-xs uppercase tracking-wider transition-all cursor-pointer"
+                  id="cancel-staff-btn"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="flex-1 py-3 bg-brand-accent hover:bg-brand-accent-hover text-white rounded-xl font-sans font-bold text-xs uppercase tracking-wider shadow-sm transition-all cursor-pointer"
+                  id="verify-staff-btn"
+                >
+                  Verify
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
 
       {/* FLOATING VIEWPORT CTA: Persistent "Book a Table" anchor in the lower right bottom viewport */}
       <AnimatePresence>

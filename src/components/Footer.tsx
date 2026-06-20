@@ -5,7 +5,11 @@
 
 import { MapPin, Phone, Mail, Clock, Instagram, Send, Star, ShieldCheck, Heart } from 'lucide-react';
 
-export default function Footer() {
+interface FooterProps {
+  onStaffPortalClick?: () => void;
+}
+
+export default function Footer({ onStaffPortalClick }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
   const handleScrollTop = () => {
@@ -128,6 +132,16 @@ export default function Footer() {
           </div>
           
           <div className="flex items-center space-x-4">
+            {onStaffPortalClick && (
+              <button
+                onClick={onStaffPortalClick}
+                className="text-[10px] font-mono uppercase tracking-widest text-brand-text/30 hover:text-brand-accent transition-colors cursor-pointer mr-2 font-medium"
+                id="footer-staff-portal-link"
+                title="Secure Lounge Staff Console Entrance"
+              >
+                🔐 Staff Entrance
+              </button>
+            )}
             <button 
               onClick={handleScrollTop}
               className="text-[10px] font-mono uppercase tracking-wider text-brand-accent hover:underline cursor-pointer font-bold"
