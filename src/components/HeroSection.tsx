@@ -3,15 +3,22 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Armchair, Calendar, ArrowDown, Users, Leaf, Sparkles } from 'lucide-react';
+import { Armchair, ArrowDown, Leaf, Sparkles } from 'lucide-react';
 
 interface HeroSectionProps {
   onReserveClick: () => void;
 }
 
 export default function HeroSection({ onReserveClick }: HeroSectionProps) {
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
-    <div className="relative bg-stone-950 min-h-[85vh] flex items-center justify-center py-24 px-4 overflow-hidden scroll-mt-24" id="hero-section">
+    <div className="relative bg-stone-950 min-h-[90vh] flex flex-col justify-between py-16 px-4 overflow-hidden scroll-mt-24" id="hero-section">
       
       {/* Visual background image with soft dark-to-transparent gradient overlay */}
       <div className="absolute inset-0 z-0 bg-stone-950">
@@ -27,7 +34,7 @@ export default function HeroSection({ onReserveClick }: HeroSectionProps) {
       </div>
 
       {/* Hero Structural Content Container */}
-      <div className="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center">
+      <div className="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center my-auto">
         
         {/* Aesthetic Slogan Tag */}
         <div 
@@ -35,14 +42,14 @@ export default function HeroSection({ onReserveClick }: HeroSectionProps) {
           onClick={onReserveClick}
           id="hero-tag-pill"
         >
-          <Leaf className="w-3.5 h-3.5 text-brand-accent-warm animate-pulse" />
+          <Sparkles className="w-3.5 h-3.5 text-brand-accent-warm animate-pulse" />
           <span className="font-mono text-[10px] text-stone-200 uppercase tracking-[0.25em] font-semibold">
             Voted Seattle's Best Botanical Lounge 2026
           </span>
         </div>
 
         {/* Highly aesthetic headliner */}
-        <h2 className="font-serif text-5xl sm:text-7xl text-white italic tracking-tight leading-[1.05] mb-6">
+        <h2 className="font-serif text-5xl sm:text-7xl text-white italic tracking-tight leading-[1.05] mb-6 animate-fade-in">
           Earthy Extraction. <br />
           <span className="text-stone-100 not-italic font-black text-4xl sm:text-6xl uppercase tracking-[0.05em] block mt-2 bg-gradient-to-r from-brand-accent-warm to-stone-200 bg-clip-text text-transparent">
             A Sun-Drenched Escape
@@ -55,7 +62,7 @@ export default function HeroSection({ onReserveClick }: HeroSectionProps) {
         </p>
 
         {/* High impact CTAs */}
-        <div className="flex flex-col sm:flex-row items-center gap-4" id="hero-cta-buttons">
+        <div className="flex flex-col sm:flex-row items-center gap-4 animate-fade-in" id="hero-cta-buttons">
           <button
             onClick={onReserveClick}
             className="w-full sm:w-auto px-8 py-4 rounded-full bg-brand-accent-warm hover:bg-brand-accent-warm-hover text-white font-sans font-bold text-xs uppercase tracking-wider hover:shadow-2xl hover:shadow-brand-accent-warm/40 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer flex items-center justify-center space-x-2 shadow-lg shadow-brand-accent-warm/15"
@@ -68,7 +75,7 @@ export default function HeroSection({ onReserveClick }: HeroSectionProps) {
           <button
             onClick={() => {
               const el = document.getElementById('digital-menu');
-              if (el) el.scrollIntoView({ behavior: 'smooth' });
+              if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }}
             className="w-full sm:w-auto px-8 py-4 rounded-full bg-white/10 border border-white/25 text-white hover:bg-white/20 hover:border-white/40 hover:scale-105 active:scale-95 text-xs font-sans font-semibold uppercase tracking-wider transition-all duration-300 cursor-pointer"
             id="hero-menu-btn"
@@ -78,18 +85,18 @@ export default function HeroSection({ onReserveClick }: HeroSectionProps) {
         </div>
 
         {/* Floating properties indicators */}
-        <div className="grid grid-cols-3 gap-6 max-w-lg mx-auto mt-16 pt-8 border-t border-white/10 text-center text-stone-400 font-mono text-[10px] uppercase tracking-widest">
+        <div className="grid grid-cols-3 gap-6 max-w-lg mx-auto mt-16 pt-8 border-t border-white/10 text-center text-stone-400 font-mono text-[10px] uppercase tracking-widest w-full">
           <div>
             <p className="text-stone-100 font-bold text-xs sm:text-sm font-sans">08:00 - 22:00</p>
-            <p className="mt-1 text-[9px] text-stone-400 font-sans">Open Daily</p>
+            <p className="mt-1 text-[9px] text-stone-400 font-sans font-medium">Open Daily</p>
           </div>
           <div>
             <p className="text-stone-100 font-bold text-xs sm:text-sm font-sans">150MBPS FIBER</p>
-            <p className="mt-1 text-[9px] text-stone-400 font-sans">Aesthetic WFH</p>
+            <p className="mt-1 text-[9px] text-stone-400 font-sans font-medium">Aesthetic WFH</p>
           </div>
           <div>
             <p className="text-stone-100 font-bold text-xs sm:text-sm font-sans">12 BOTANICAL BOOTHS</p>
-            <p className="mt-1 text-[9px] text-stone-400 font-sans">Reserved Spaces</p>
+            <p className="mt-1 text-[9px] text-stone-400 font-sans font-medium">Reserved Spaces</p>
           </div>
         </div>
 
@@ -97,10 +104,10 @@ export default function HeroSection({ onReserveClick }: HeroSectionProps) {
 
       {/* Decorative Chevron */}
       <div 
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/50 hover:text-white cursor-pointer transition-colors animate-bounce"
+        className="relative z-10 mx-auto mt-4 text-white/50 hover:text-white cursor-pointer transition-colors animate-bounce"
         onClick={() => {
-          const el = document.getElementById('about-brand');
-          if (el) el.scrollIntoView({ behavior: 'smooth' });
+          const el = document.getElementById('digital-menu');
+          if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }}
         id="hero-scroll-indicator"
       >
